@@ -1,6 +1,5 @@
 Ghost
-=====
-***
+-----
 #####Just a blogging platform
 
 
