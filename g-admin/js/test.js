@@ -12,6 +12,19 @@ var count_words = function() {
 		return words.length + " Words";
 	}
 }
+var path_from_title = function() {
+	return $('#posts-title').val()
+			.replace(/[^a-z0-9\-]/gi, '-')
+			.replace( /--+/g, '-' )
+			.replace(/^-*/, '')
+			.replace(/-*$/, '')
+			.toLowerCase();
+}
+
+$('#post-url-path').html(path_from_title());
+$('#posts-title').on('keyup', function(e) {
+	$('#post-url-path').html(path_from_title());
+});
 
 $('#markdown-to-html').html(converter.makeHtml(document.getElementById("markdown-text").value));
 $('#word-count').html(count_words());

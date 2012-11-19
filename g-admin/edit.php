@@ -21,6 +21,7 @@
 <div id="post-title-holder" class="grid pad-nav">
 	<input id="posts-title" class="col-1-1 post-title" value="{{title}}">
 	<i class="icon-fullscreen"></i>
+	<div id="posts-title-url" class="post-title-url">http://yoursite.com/<b id="post-url-path">post-name</b></div>
 </div>
 <section id="main-grid" class="the-grid edit">
 	<div class="grid full-height pad-top">
@@ -42,9 +43,9 @@
 				<div class="left">
 					<h1 class="cell-name">Preview</h1>
 				</div>
-				<span class="right">
+				<div class="right">
 					<h1 id="word-count" class="cell-name"></h1>
-				</span>
+				</div>
 				<article id="markdown-to-html" class="post-holder"></article>
 			</div>
 		</div>
