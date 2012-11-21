@@ -12,5 +12,8 @@ Ghost.Collections._Posts = Backbone.Collection.extend({
 		this.clear_active();
 		post.set({active: true});
 		this.trigger("update_posts");
+	},
+	get_active: function(){
+		return this.where({active: true})[0].get("id");
 	}
 });

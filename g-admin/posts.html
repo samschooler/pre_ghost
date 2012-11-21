@@ -14,17 +14,17 @@
 	<script type="text/javascript" src="js/lib/zepto.js"></script>
 	<script type="text/javascript" src="js/lib/handlebars.js"></script>
 	<script type="text/javascript" src="js/lib/showdown.js"></script>
+		<script type="text/javascript" src="js/lib/extensions/table.js"></script>
 	<script type="text/javascript" src="js/lib/underscore.js"></script>
 	<script type="text/javascript" src="js/lib/backbone.js"></script>
 
 	<script type="text/javascript" src="js/posts.js"></script>
-	<script type="text/javascript" src="js/models.js"></script>
-	<script type="text/javascript" src="js/collections.js"></script>
-	<script type="text/javascript" src="js/views.js"></script>
-	<script type="text/javascript" src="js/templates.js"></script>
-	<script type="text/javascript" src="js/util.js"></script>
+		<script type="text/javascript" src="js/models.js"></script>
+		<script type="text/javascript" src="js/collections.js"></script>
+		<script type="text/javascript" src="js/views.js"></script>
+		<script type="text/javascript" src="js/templates.js"></script>
+		<script type="text/javascript" src="js/util.js"></script>
 	<script id="t-posts" type="text/x-handlebars-template">
-		<nav id="adminbar">Hi der</nav>
 		<section id="main-grid" class="the-grid full-height">
 			<div class="grid full-height pad-nav">
 				<div id="posts-list" class="col-1-2 post-list">
@@ -76,8 +76,51 @@
 			</article>
 		</div>
 	</script>
+
+
+	<script id="t-edit" type="text/x-handlebars-template">
+		<div id="post-title-holder" class="grid pad-nav">
+			<input id="posts-title" class="col-1-1 post-title" value="{{title}}">
+			<i class="icon-fullscreen"></i>
+			<div id="posts-title-url" class="post-title-url">http://yoursite.com/<b id="post-url-path">post-name</b></div>
+		</div>
+		<section id="main-grid" class="the-grid edit">
+			<div class="grid full-height pad-top">
+				<div id="posts-edit" class="col-1-2 full-height post-edit">
+				</div>
+				<div id="posts-view" class="col-1-2 full-height post-view">
+				</div>
+			</div>
+		</section>
+	</script>
+	<script id="t-edit-edit" type="text/x-handlebars-template">
+		<div class="content full-height">
+			<div class="left">
+				<h1 class="cell-name">Markdown</h1>
+			</div>
+			<span class="right">
+				<a href="help.html" target="_blank"><i id="help" class="icon-question-sign" title="Help"></i></a>
+				<i id="publish" class="icon-eye-open" title="Save and Publish"></i>
+				<i id="edit" class="icon-save" title="Save Draft"></i>
+			</span>
+			<textarea id="markdown-text" class="post-holder markdown" placeholder="Spill your thoughts here...">{{content}}</textarea>
+		</div>
+	</script>
+	<script id="t-edit-view" type="text/x-handlebars-template">
+		<div class="content full-height">
+			<div class="left">
+				<h1 class="cell-name">Preview</h1>
+			</div>
+			<div class="right">
+				<h1 id="word-count" class="cell-name"></h1>
+			</div>
+			<article id="markdown-to-html" class="post-holder"></article>
+		</div>
+	</script>
 </head>
 <body>
+<nav id="adminbar">Hi der</nav>
+<section id="main" class="full-height"></section>
 <script type="text/javascript">if(!$)$=Zepto;$(Ghost.init);</script>
 </body>
 </html>

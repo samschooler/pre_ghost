@@ -139,6 +139,12 @@ a {
     float: right;
     text-align: right;
 }
+.post-view .content .right {
+    width: 75%;
+}
+#word-count {
+    width: 100%;
+}
 /* ===[ Post View Toolbar ]=== */
 .post-view .draft .left .cell-name:before { content: 'Draft' }
 .post-view .published .left .cell-name:before { content: 'Published' }
