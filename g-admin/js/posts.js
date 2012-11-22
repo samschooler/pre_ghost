@@ -44,6 +44,9 @@ var Ghost = {
 		Ghost.Collections.posts.add(post_one);
 
 		Ghost.routers = new Ghost._Routers;
+
+		Ghost.recon = new Ghost._Recon();
+
 		Backbone.history.start();
 	}
 }
