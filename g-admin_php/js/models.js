@@ -1,1 +1,0 @@
-Ghost.Models._Post = Backbone.Model.extend({});
