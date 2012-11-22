@@ -43,10 +43,7 @@ var Ghost = {
 		});
 		Ghost.Collections.posts.add(post_one);
 
-
-		Ghost.Views.posts =     new Ghost.Views._Posts({el: '#main'}).render();
-		Ghost.Views.post_list = new Ghost.Views._Posts_List({el: '#posts-list'}).render();
-		Ghost.Views.post_view = new Ghost.Views._Posts_View({el: '#posts-view'}).render();
-		Ghost.Utils.update_preview();
+		Ghost.routers = new Ghost._Routers;
+		Backbone.history.start();
 	}
 }

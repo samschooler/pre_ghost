@@ -12,7 +12,9 @@ Ghost.Views._Posts_List = Backbone.View.extend({
 	initialize: function(){
 		Ghost.Collections.posts.on('update_posts', this.render, this);
 		Ghost.Collections.posts.on('add', this.render, this);
-		Ghost.Collections.posts.at(0).set({active: true});
+		
+		if(!Ghost.Collections.posts.get_active())
+			Ghost.Collections.posts.at(0).set({active: true});
 	},
     render: function(){
 		var data = Ghost.Collections.posts.toJSON();
@@ -41,6 +43,7 @@ Ghost.Views._Posts_View = Backbone.View.extend({
     render: function(){
 		var data = Ghost.Collections.posts.toJSON();
 		$(this.el).html(Ghost.Templates["t-posts-view"]({"posts": data}));
+		Ghost.Utils.update_preview();
 		return this;
     },
     clicked: function(e) {
@@ -55,7 +58,8 @@ Ghost.Views._Posts_View = Backbone.View.extend({
     			} else if(e.target.id == "delete") {
     					alert("Delete");
     			} else if(e.target.id == "edit") {
-    					Ghost.Utils.switch_to_edit_view();
+    					//Ghost.Utils.switch_to_edit_view();
+    					Ghost.routers.navigate("!/edit/" + Ghost.Collections.posts.get_active(), {trigger: true});
     			}
     		}
     	});
@@ -70,6 +74,9 @@ Ghost.Views._Edit = Backbone.View.extend({
     }
 });
 Ghost.Views._Edit_Edit = Backbone.View.extend({
+	events: {
+		"click .right i": "clicked"
+	},
 	initialize: function(){
 		Ghost.Collections.posts.get(this.id).on('update_posts', this.render, this);
 		_.bindAll(this, 'render', 'count_words', 'path_from_title');
@@ -114,7 +121,47 @@ Ghost.Views._Edit_Edit = Backbone.View.extend({
 					.replace(/-*$/, '')
 					.toLowerCase() || "post_url_here";
 		else return "post_url_here";
-	}
+	},
+    clicked: function(e) {
+    	var post = Ghost.Collections.posts.get(this.id);
+		if(e.target.id == "publish") {
+			alert("Published");
+			post.set({published: !(post.get("published"))});
+			post.set({
+				title: $('#posts-title').val(),
+				content: $('#markdown-text').val()});
+			Ghost.Collections.posts.trigger("update_posts");
+			Ghost.Views.edit_edit.render();
+		} else if(e.target.id == "update") {
+			post.set({
+				title: $('#posts-title').val(),
+				content: $('#markdown-text').val()
+			});
+			Ghost.Collections.posts.trigger("update_posts");
+			$('#update').removeClass("icon-refresh");
+			$('#update').addClass("icon-ok");
+			var t = setTimeout(function(){
+				$('#update').removeClass("icon-ok");
+				$('#update').addClass("icon-refresh");
+			}, 2000);
+		} else if(e.target.id == "save") {
+			post.set({
+				title: $('#posts-title').val(),
+				content: $('#markdown-text').val()});
+			Ghost.Views.edit_edit.render();
+			$('#save').removeClass("icon-save");
+			$('#save').addClass("icon-ok");
+			var t = setTimeout(function(){
+				$('#save').removeClass("icon-ok");
+				$('#save').addClass("icon-save");
+			}, 2000);
+		} else if(e.target.id == "close") {
+			if(Ghost.Collections.posts.get(this.id).get("title") != $('#posts-title').val() || Ghost.Collections.posts.get(this.id).get("content") != $('#markdown-text').val()) {
+				if(confirm("You have edited this post, all unsaved changes will be lost! Do you still want to close?"))
+					Ghost.routers.navigate("!/", {trigger: true});
+			} else Ghost.routers.navigate("!/", {trigger: true});
+    	}
+    }
 });
 Ghost.Views._Edit_View = Backbone.View.extend({
 	render: function(){
