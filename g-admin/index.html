@@ -81,7 +81,7 @@
 	<script id="t-edit" type="text/x-handlebars-template">
 		<div id="post-title-holder" class="grid pad-nav">
 			<input id="posts-title" class="col-1-1 post-title" value="{{title}}">
-			<i class="icon-fullscreen-full"></i>
+			<i id="fullscreen" class="icon-resize-full" title="Toggle Fullscreen"></i>
 			<div id="posts-title-url" class="post-title-url">http://yoursite.com/<b id="post-url-path">post-name</b></div>
 		</div>
 		<section id="main-grid" class="the-grid edit">
@@ -120,7 +120,7 @@
 	</script>
 </head>
 <body>
-<nav id="adminbar">Hi der</nav>
+<nav class="adminbar">Hi der</nav>
 <section id="main" class="full-height"></section>
 <script type="text/javascript">if(!$)$=Zepto;$(Ghost.init);</script>
 </body>

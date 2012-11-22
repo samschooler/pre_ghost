@@ -15,7 +15,7 @@ a {
     color: #444444;
 }
 /* ===[ Admin Bar ]=== */
-#adminbar {
+.adminbar {
     height: 45px;
     padding: 5px;
     background-color: #222;
@@ -255,6 +255,7 @@ a {
     cursor: pointer;
 }
 .content .right i:first-child { border-left: none }
+.content .right i:last-child { padding-right: 2px }
 .content .right.disabled i {
     color: #e2e2e2;
     cursor: default;
@@ -268,6 +269,22 @@ a {
     background-color: white;
     padding: 14px;
     cursor: pointer;
+}
+/* ===[ Post Edit Fullscreen ]=== */
+.fullscreen.adminbar {
+    display: none;
+}
+.fullscreen .the-grid.edit {
+    top: 60px;
+}
+.fullscreen .pad-nav {
+    padding: 0px;
+}
+.fullscreen .pad-top {
+    padding: 0px;
+}
+.fullscreen [class*="col-"] {
+    padding-right: 0px;
 }
 /* ===[ Utilities ]=== */
 .cl { clear: both }

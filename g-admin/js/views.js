@@ -9,6 +9,7 @@ Ghost.Views._Posts_List = Backbone.View.extend({
 	events: {
 		"click .post-meta": "clicked"
 	},
+
 	initialize: function(){
 		Ghost.Collections.posts.on('update_posts', this.render, this);
 		Ghost.Collections.posts.on('add', this.render, this);
@@ -68,10 +69,22 @@ Ghost.Views._Posts_View = Backbone.View.extend({
 
 
 Ghost.Views._Edit = Backbone.View.extend({
+	events: {
+		'click #fullscreen': 'toggle_fullscreen'
+	},
     render: function(){
 		$(this.el).html(Ghost.Templates["t-edit"](Ghost.Collections.posts.get(this.id).toJSON()));
 		return this;
-    }
+    },
+    toggle_fullscreen: function() {
+		if ($('#main').hasClass('fullscreen')) {
+			Ghost.Utils.set_fullscreen(false);
+		}
+		else
+		{
+			Ghost.Utils.set_fullscreen(true);
+		}
+	}
 });
 Ghost.Views._Edit_Edit = Backbone.View.extend({
 	events: {
