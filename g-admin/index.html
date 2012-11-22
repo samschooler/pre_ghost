@@ -22,7 +22,7 @@
 		<script type="text/javascript" src="js/models.js"></script>
 		<script type="text/javascript" src="js/collections.js"></script>
 		<script type="text/javascript" src="js/views.js"></script>
-		<script type="text/javascript" src="js/templates.js"></script>
+		<script type="text/javascript" src="js/routers.js"></script>
 		<script type="text/javascript" src="js/util.js"></script>
 	<script id="t-posts" type="text/x-handlebars-template">
 		<section id="main-grid" class="the-grid full-height">
@@ -81,7 +81,7 @@
 	<script id="t-edit" type="text/x-handlebars-template">
 		<div id="post-title-holder" class="grid pad-nav">
 			<input id="posts-title" class="col-1-1 post-title" value="{{title}}">
-			<i class="icon-fullscreen"></i>
+			<i class="icon-fullscreen-full"></i>
 			<div id="posts-title-url" class="post-title-url">http://yoursite.com/<b id="post-url-path">post-name</b></div>
 		</div>
 		<section id="main-grid" class="the-grid edit">
@@ -100,8 +100,9 @@
 			</div>
 			<span class="right">
 				<a href="help.html" target="_blank"><i id="help" class="icon-question-sign" title="Help"></i></a>
-				<i id="publish" class="icon-eye-open" title="Save and Publish"></i>
-				<i id="edit" class="icon-save" title="Save Draft"></i>
+				<i id="{{#published}}update{{/published}}{{^published}}publish{{/published}}" class="icon-{{#published}}refresh{{/published}}{{^published}}eye-open{{/published}}" title="{{#published}}Update{{/published}}{{^published}}Save and Publish{{/published}}"></i>
+				{{^published}}<i id="save" class="icon-save" title="Save as Draft"></i>{{/published}}
+				<i id="close" class="icon-remove" title="Close"></i>
 			</span>
 			<textarea id="markdown-text" class="post-holder markdown" placeholder="Spill your thoughts here...">{{content}}</textarea>
 		</div>
