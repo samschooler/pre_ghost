@@ -23,6 +23,13 @@ Ghost.Views._Posts_List = Backbone.View.extend({
 
 		return this;
     },
+    clicked_tool: function(e) {
+		if(e.target.id == "search") {
+				alert("search");
+		} else if(e.target.id == "new") {
+				Ghost.routers.navigate("!/new", {trigger: true});
+		}
+    },
     clicked: function(e) {
     	e.preventDefault();
     	var ele = e.target;
