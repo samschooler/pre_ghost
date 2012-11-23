@@ -48,7 +48,7 @@ a {
     font-size: 12px;
     height: 15px;
     margin: 0 0 10px 0;
-    padding: 0 0 0 2px;
+    padding-left: 2px;
     color: #c7c7c7;
     text-transform: uppercase;
 }
@@ -235,7 +235,7 @@ a {
     font-family: Courier, monospace;
     color: #888;
 }
-.post-edit .content { padding-bottom: 57px }
+.post-edit .content { padding-bottom: 62px }
 .post-edit .post-holder *:first-child {
     margin-top: 0px;
     padding-top: 0px;
@@ -336,7 +336,7 @@ a {
         padding-left: 0px;
         padding-right: 0px;
     }
-    .the-grid .post-view { padding: 0 5px 5px 5px }
+    .the-grid .post-view { padding: 0 10px 10px 10px }
     .the-grid .post-edit { padding: 0 5px 5px 5px }
     .the-grid .post-list { padding-left: 10px }
     .post-list .post-meta.active:before { display: none }
