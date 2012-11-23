@@ -150,6 +150,7 @@ a {
 .post-view .published .left .cell-name:before { content: 'Published' }
 .post-view .featured .left .cell-name:after { content: ' + Featured' }
 .post-view .featured .right i.icon-bolt { color: #FFD324 }
+.post-view .featured .right i.icon-bolt:hover { color: #444 }
 /* ===[ Article Formatting ]=== */
 .post-view .post-holder a {
     text-decoration: underline;
@@ -246,6 +247,7 @@ a {
 }
 /* ===[ Post Edit Toolbar ]=== */
 .post-edit .right i { color: #c7c7c7 }
+.post-edit .right i:hover { color: #D9D9D9 }
 /* ===[ Icons ]=== */
 .content .right i {
     font-size: 17px;
@@ -254,6 +256,8 @@ a {
     border-left: solid #e2e2e2 1px;
     cursor: pointer;
 }
+.post-view .content .right i:hover, .post-list .content .right i:hover { color: #c7c7c7 }
+.post-view .right i.icon-bolt:hover { color: #FFD324 }
 .content .right i:first-child { border-left: none }
 .content .right i:last-child { padding-right: 2px }
 .content .right.disabled i {
@@ -271,6 +275,9 @@ a {
     cursor: pointer;
 }
 /* ===[ Post Edit Fullscreen ]=== */
+#fullscreen:hover {
+    color: #D9D9D9;
+}
 .fullscreen.adminbar {
     display: none;
 }
