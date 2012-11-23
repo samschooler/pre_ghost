@@ -1,7 +1,6 @@
 Ghost._Routers = Backbone.Router.extend({
     routes: {
         "!/edit/:id":        "open_editor",
-        "!/new":              "new_post",
         "*actions":           "default_route"
     },
 	open_editor: function(id) {
@@ -21,11 +20,6 @@ Ghost._Routers = Backbone.Router.extend({
 		Ghost.Views.edit_edit.render();
 		if (Ghost.Views.edit_view) Ghost.Views.edit_view.undelegateEvents();
 		Ghost.Views.edit_view = new Ghost.Views._Edit_View({el: '#posts-view'}).render();
-	},
-	new_post: function() {
-		var id = Ghost.Collections.posts.new();
-		Ghost.Collections.posts.set_active(id);
-		Ghost.routers.navigate("!/edit/" + id, {trigger: true});
 	},
 	default_route: function() {
 		Ghost.routers.navigate("!/", {replace: true});

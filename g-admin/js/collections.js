@@ -4,9 +4,6 @@ Ghost.Collections._Posts = Backbone.Collection.extend({
 	comparator: function(post) {
 		return post.get("id");
 	},
-	clear_active: function(){
-		
-	},
 	set_active: function(id){
 		this.active = id;
 		this.trigger("update_posts");
@@ -21,7 +18,6 @@ Ghost.Collections._Posts = Backbone.Collection.extend({
 		var yyyy = today.getFullYear();
 		today = mm+'/'+dd+'/'+yyyy; 
 		var id = this.the_id;
-		this.clear_active();
 		Ghost.Collections.posts.add(new Ghost.Models._Post({
 			title: "Untitled",
 			tags: [],

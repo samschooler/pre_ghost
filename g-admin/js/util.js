@@ -20,3 +20,8 @@ Ghost.Utils.set_fullscreen = function(full) {
 		$('#fullscreen').removeClass('icon-resize-small');
 	}
 }
+Ghost.Utils.new_post = function() {
+	var id = Ghost.Collections.posts.new();
+	Ghost.Collections.posts.set_active(id);
+	Ghost.routers.navigate("!/edit/" + id, {trigger: true});
+}

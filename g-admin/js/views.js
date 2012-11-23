@@ -26,7 +26,7 @@ Ghost.Views._Posts_List = Backbone.View.extend({
 		if(e.target.id == "search") {
 				alert("search");
 		} else if(e.target.id == "new") {
-				Ghost.routers.navigate("!/new", {trigger: true});
+				Ghost.Utils.new_post();
 		}
     },
     clicked: function(e) {
@@ -63,7 +63,11 @@ Ghost.Views._Posts_View = Backbone.View.extend({
 				Ghost.Collections.posts.trigger("update_posts");
 		} else if(e.target.id == "delete") {
 				if(confirm("Do you really want to say goodbye to this post FOREVER?"))
+				{
 					Ghost.Collections.posts.remove(post);
+					Ghost.Collections.posts.set_active(0);
+					Ghost.Collections.posts.trigger('update_posts');
+				}
 		} else if(e.target.id == "edit") {
 				Ghost.routers.navigate("!/edit/" + Ghost.Collections.posts.get_active(), {trigger: true});
 		}
