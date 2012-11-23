@@ -1,29 +1,37 @@
 Ghost.Collections._Posts = Backbone.Collection.extend({
+	active: 0,
+	the_id: 0,
 	comparator: function(post) {
 		return post.get("id");
 	},
 	clear_active: function(){
-		this.each(function(post) {
-			post.set({active: false});
-		});
+		
 	},
-	set_active: function(pid){
-		var post = this.get(pid);
-		this.clear_active();
-		post.set({active: true});
-		this.trigger("update_posts");
-	},
-	set_active_at: function(id){
-		var post = this.at(id);
-		this.clear_active();
-		post.set({active: true});
+	set_active: function(id){
+		this.active = id;
 		this.trigger("update_posts");
 	},
 	get_active: function(){
-		var active = this.where({active: true});
-		if(active.length > 0)
-			return active[0].get("id");
-		else
-			return false;
+		return this.active;
+	},
+	new: function() {
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1;
+		var yyyy = today.getFullYear();
+		today = mm+'/'+dd+'/'+yyyy; 
+		var id = this.the_id;
+		this.clear_active();
+		Ghost.Collections.posts.add(new Ghost.Models._Post({
+			title: "Untitled",
+			tags: [],
+			date: today,
+			view: 0,
+			content: "", 
+			published: false, 
+			featured: false,
+			active: true
+		}));
+		return id;
 	}
 });

@@ -1,6 +1,3 @@
-var b;
-var a;
-
 var Ghost = {
 	Models:      {},
 	Templates:   {},
@@ -12,6 +9,20 @@ var Ghost = {
 		$('script[type="text/x-handlebars-template"]').each(function () {
 			Ghost.Templates[this.id] = Handlebars.compile(this.innerHTML);
 		});
+		Handlebars.registerHelper('parse_tags', function(tags) {
+			var p_tags = tags[0];
+			for (var i = 1; i < tags.length; i++) {
+				var p_tags = p_tags + ", " + tags[i];
+			};
+			return p_tags;
+		});
+		Handlebars.registerHelper('is_active', function(id, options) {
+			if(Ghost.Collections.posts.active == id) {
+		        return options.fn(this);
+		    } else {
+		        return options.inverse(this);
+		    }
+		});
 	},
 	init: function(){
 		Ghost._loadTemplates();
@@ -19,11 +30,11 @@ var Ghost = {
 		
 		Ghost.Collections.posts = new Ghost.Collections._Posts();
 
+		// !Debug
 		var post = new Ghost.Models._Post({
-			id: 2,
 			title: "Two.post",
 			tags: ["new", "hot", "sexy"],
-			date: "12/3/96",
+			date: "12/3/1996",
 			view: 3123,
 			content: "*Content* goes here for article 2.", 
 			published: true, 
@@ -32,16 +43,16 @@ var Ghost = {
 		Ghost.Collections.posts.add(post);
 
 		var post_one = new Ghost.Models._Post({
-			id: 1,
 			title: "One.post",
 			tags: ["new", "hot", "sexy"],
-			date: "12/3/96",
+			date: "12/3/1996",
 			view: 3123,
 			content: "From this day forward, **Flight** Control will be known by two words: ‘Tough’ and ‘Competent.’ Tough means we are forever accountable for what we do or what we fail to do. We will never again compromise our responsibilities. Every time we walk into Mission Control we will know what we stand for. Competent means we will never take anything for granted. We will never be found short in our knowledge and in our skills. Mission Control will be perfect. When you leave this meeting today you will go to your office and the first thing you will do there is to write ‘Tough and Competent’ on your blackboards. It will never be erased. Each day when you enter the room these words will remind you of the price paid by Grissom, White, and Chaffee. These words are the price of admission to the ranks of Mission Control.", 
 			published: false, 
 			featured: false
 		});
 		Ghost.Collections.posts.add(post_one);
+		// !Debug
 
 		Ghost.routers = new Ghost._Routers;
 
