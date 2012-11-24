@@ -44,7 +44,7 @@
 				<i id="new" class="icon-plus" title="New Post"></i>
 				<i id="search" class="icon-search" title="Search Posts"></i>
 			</span>
-			<!--{{#posts}}-->
+			{{#posts}}
 			<div class="{{#is_active id}}active {{/is_active}}post-meta" id="post-{{id}}">
 				<div  class="left">
 					<h2 class="title">{{title}}</h2>
@@ -54,19 +54,6 @@
 				<div  class="right">
 					<span class="date">{{date}}</span>
 					<div class="views">{{views}}</div>
-				</div>
-				<div class="cl"></div>
-			</div>
-			<!--{{/posts}}-->
-			{{^posts}} 
-			<div class="{{#is_active id}}active {{/is_active}}post-meta" id="post-{{id}}">
-				<div  class="left">
-					<h2 class="title">You Have No Posts! Click <i class="icon-plus"></i> to create a new post </h2>
-					<div class="status draft"></div>
-				</div>
-				<div  class="right">
-					<span class="date">Today</span>
-					<div class="views">None Yet</div>
 				</div>
 				<div class="cl"></div>
 			</div>
