@@ -4,8 +4,10 @@ Ghost._Routers = Backbone.Router.extend({
         "*actions":           "default_route"
     },
 	open_editor: function(id) {
-		if(!Ghost.Collections.posts.get(id))
+		if(!Ghost.Collections.posts.get(id)) {
 			this.default_route();
+			return;
+		}
 		Ghost.Collections.posts.set_active(id);
 		if (Ghost.Views.edit) Ghost.Views.edit.undelegateEvents();
 		Ghost.Views.edit = new Ghost.Views._Edit({
