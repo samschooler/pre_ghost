@@ -480,7 +480,7 @@ var _RunBlockGamut = function(text) {
 	text = _FormParagraphs(text);
 
 	// !ADDED
-	text = text.replace(/\<p\>\(image\)\<\/p\>/g, '<div style="width: 100%;border: dashed #E2E2E2 6px;padding: 50px 50px;text-align: center;margin-bottom:10px"><h2>Drag image here, </h2><h2><input type="file">, or <input type="text" placeholder="Type a url"></h2></div>');
+	text = text.replace(/\(image\)/g, '<div style="width: 100%;border: dashed #E2E2E2 6px;padding: 50px 50px;text-align: center;margin-bottom:10px"><h2>Drag image here, </h2><h2><input type="file">, or <input type="text" placeholder="Type a url"></h2></div>');
 	return text;
 };
 
@@ -509,7 +509,8 @@ var _RunSpanGamut = function(text) {
 
 	// Do hard breaks:
 	text = text.replace(/  +\n/g," <br />\n");
-
+	// !ADDED
+	text = text.replace(/\%\%caret\%\%/g, '<span id="caret"></span>');
 	return text;
 }
 

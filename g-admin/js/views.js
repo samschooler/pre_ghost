@@ -94,8 +94,7 @@ Ghost.Views._Edit = Backbone.View.extend({
 });
 Ghost.Views._Edit_Edit = Backbone.View.extend({
 	events: {
-		"click .right i": "clicked"
-	},
+		"click .right i": "clicked"	},
 	initialize: function(){
 		Ghost.Collections.posts.get(this.id).on('update_posts', this.render, this);
 	},
@@ -104,6 +103,10 @@ Ghost.Views._Edit_Edit = Backbone.View.extend({
 		$(this.el).html(Ghost.Templates["t-edit-edit"](Ghost.Collections.posts.get(this.id).toJSON()));
 
 		$('#markdown-text').on('keyup', function(e) {
+			Ghost.Utils.update_preview();
+			$('#word-count').html(Ghost.Views.edit_edit.count_words());
+		});
+		$('#markdown-text').on('click', function(e) {
 			Ghost.Utils.update_preview();
 			$('#word-count').html(Ghost.Views.edit_edit.count_words());
 		});
