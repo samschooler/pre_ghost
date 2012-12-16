@@ -479,7 +479,7 @@ var _RunBlockGamut = function(text) {
 	text = _HashHTMLBlocks(text);
 	text = _FormParagraphs(text);
 
-    return text;
+	return text;
 };
 
 
@@ -507,8 +507,7 @@ var _RunSpanGamut = function(text) {
 
 	// Do hard breaks:
 	text = text.replace(/  +\n/g," <br />\n");
-	// !ADDED
-	text = text.replace(/\%\%caret\%\%/g, '<span id="caret"></span>');
+
 	return text;
 }
 
