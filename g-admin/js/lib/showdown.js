@@ -479,9 +479,7 @@ var _RunBlockGamut = function(text) {
 	text = _HashHTMLBlocks(text);
 	text = _FormParagraphs(text);
 
-	// !ADDED
-	text = text.replace(/\(image\)/g, '<div style="width: 100%;border: dashed #E2E2E2 6px;padding: 50px 50px;text-align: center;margin-bottom:10px"><h2>Drag image here, </h2><h2><input type="file">, or <input type="text" placeholder="Type a url"></h2></div>');
-	return text;
+    return text;
 };
 
 

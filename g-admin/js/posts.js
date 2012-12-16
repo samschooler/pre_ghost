@@ -26,7 +26,7 @@ var Ghost = {
 	},
 	init: function(){
 		Ghost._loadTemplates();
-		Ghost.converter = new Showdown.converter({ extensions: ['table'] });
+		Ghost.converter = new Showdown.converter({ extensions: ['table', 'addghost'] });
 		
 		Ghost.Collections.posts = new Ghost.Collections._Posts();
 		/*Ghost.Collections.posts.fetch({
