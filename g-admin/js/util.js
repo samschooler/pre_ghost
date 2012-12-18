@@ -1,8 +1,15 @@
+var uniq;
 Ghost.Utils.update_preview = function() {
 	var caret_loc = Ghost.Utils.get_caret($('#markdown-text')[0])
-			var first_half =  $('#markdown-text').val().slice(0, caret_loc);
-			var second_half = $('#markdown-text').val().slice(caret_loc);
-			var full_text = first_half + "%%caret%%" + second_half;
+			var slip =  $('#markdown-text').val()
+                .replace("(image)", "%%!%%")
+                .slice(0, caret_loc);
+            uniq = slip.lastIndexOf(_.last(slip.match(/\b[a-zA-Z0-9_]+\b/g)));
+            if(uniq < 0) uniq = 0;
+            var first_half =  $('#markdown-text').val().slice(0, uniq);
+			var second_half = $('#markdown-text').val().slice(uniq);
+			var full_text = (first_half + "%%caret%%" + second_half)
+                .replace("%%!%%", "(image)")
 	$('#markdown-to-html').html(
 		Ghost.converter.makeHtml(
 			full_text

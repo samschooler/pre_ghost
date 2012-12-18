@@ -118,7 +118,7 @@ Ghost.Views._Edit_Edit = Backbone.View.extend({
 		return this;
     },
     count_words: function(){
-		var words = $('#markdown-to-html').text().match(/\S+/g)
+		var words = $('#markdown-to-html').text().match(/\b[a-zA-Z0-9_,']+\b/g)
 		if(words == null) {
 			return "No Words";
 		}

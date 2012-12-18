@@ -6,7 +6,7 @@
             { type: 'output', regex: '\\(image\\)', replace: '<div style="width: 100%;border: dashed #E2E2E2 6px;padding: 50px 50px;text-align: center;margin-bottom:10px"><h2>Drag image here, </h2><h2><input type="file">, or <input type="text" placeholder="Type a url"></h2></div>' },
             
             // caret placeholder
-            { type: 'output', regex: '\\%\\%caret\\%\\%', replace: '<span id="caret"></span>' }
+            { type: 'lang', regex: '\\%\\%caret\\%\\%', replace: '<span id="caret"></span>' }
         ];
     };
 

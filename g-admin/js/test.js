@@ -1,4 +1,4 @@
-Ghost.converter = new Showdown.converter({ extensions: ['table'] });
+Ghost.converter = new Showdown.converter({ extensions: ['table', 'addghost'] });
 var count_words = function() {
 	var words = $('#markdown-to-html').text().match(/\S+/g)
 	if(words == null) {
@@ -31,6 +31,10 @@ if($('#posts-title').length > 0) {
 Ghost.Utils.update_preview();
 $('#word-count').html(count_words());
 $('#markdown-text').on('keyup', function(e) {
+	Ghost.Utils.update_preview();
+	$('#word-count').html(count_words());
+});
+$('#markdown-text').on('click', function(e) {
 	Ghost.Utils.update_preview();
 	$('#word-count').html(count_words());
 });
