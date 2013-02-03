@@ -5,12 +5,20 @@ Ghost.Collections._Posts = Backbone.Collection.extend({
 	comparator: function(post) {
 		return post.get("id");
 	},
-	set_active: function(id){
-		this.active = id;
+	set_active: function(index){
+		this.active = index;
 		this.trigger("update_posts");
 	},
 	get_active: function(){
 		return this.active;
+	},
+	get_active_model: function(){
+		return Ghost.Collections.posts.at(this.active);
+	},
+	get_index: function(id) {
+		var i = 0, l = Ghost.Collections.posts.models.length;
+		for (; i < l; i++) if (Ghost.Collections.posts.models[i].id == id) return i;
+			return 0;
 	},
 	new: function() {
 		var today = new Date();
@@ -20,15 +28,17 @@ Ghost.Collections._Posts = Backbone.Collection.extend({
 		today = mm+'/'+dd+'/'+yyyy; 
 		var id = this.the_id;
 		Ghost.Collections.posts.add(new Ghost.Models._Post({
-			title: "Untitled",
+			id: this.the_id,
+			title: "",
 			tags: [],
 			date: today,
-			view: 0,
+			views: 0,
 			content: "", 
 			published: false, 
 			featured: false,
 			active: true
 		}));
+		this.the_id++;
 		return id;
 	},
 	serv_changed: function(id) {

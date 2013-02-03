@@ -1,14 +1,30 @@
 Ghost._Routers = Backbone.Router.extend({
     routes: {
+    	"!/edit/new":        "open_new_editor",
         "!/edit/:id":        "open_editor",
         "*actions":           "default_route"
     },
+    open_new_editor: function() {
+		Ghost.Collections.posts.set_active(0);
+		if (Ghost.Views.edit) Ghost.Views.edit.undelegateEvents();
+		Ghost.Views.edit = new Ghost.Views._New({
+			el: '#main'
+		}).render();
+		if (Ghost.Views.edit_edit) Ghost.Views.edit_edit.undelegateEvents();
+		Ghost.Views.edit_edit = new Ghost.Views._New_Edit({
+			el: '#posts-edit'
+		});
+		Ghost.Views.edit_edit.render();
+		if (Ghost.Views.edit_view) Ghost.Views.edit_view.undelegateEvents();
+		Ghost.Views.edit_view = new Ghost.Views._Edit_View({el: '#posts-view'}).render();
+	},
 	open_editor: function(id) {
 		if(!Ghost.Collections.posts.get(id)) {
 			this.default_route();
 			return;
 		}
-		Ghost.Collections.posts.set_active(id);
+
+		Ghost.Collections.posts.set_active(Ghost.Collections.posts.get_index(id));
 		if (Ghost.Views.edit) Ghost.Views.edit.undelegateEvents();
 		Ghost.Views.edit = new Ghost.Views._Edit({
 			id: id,
